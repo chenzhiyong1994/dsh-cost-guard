@@ -1,0 +1,45 @@
+{
+  "name": "dsh-cost-guard",
+  "version": "4.2.0",
+  "description": "Live, local cost estimates for DeepSeek Harness from actual token usage and configurable model pricing.",
+  "license": "MIT",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "cordis",
+    "cordis-plugin",
+    "cost",
+    "cost-tracking",
+    "token",
+    "token-monitoring",
+    "pricing",
+    "plugin"
+  ],
+  "scripts": {
+    "check": "node scripts/check.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "host.js",
+    "client.js",
+    "scripts/",
+    "docs/",
+    "README.md",
+    "README.zh-CN.md",
+    "CHANGELOG.md",
+    "CONTRIBUTING.md",
+    "SECURITY.md",
+    "LICENSE"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chenzhiyong1994/dsh-cost-guard.git"
+  },
+  "homepage": "https://github.com/chenzhiyong1994/dsh-cost-guard#readme",
+  "bugs": {
+    "url": "https://github.com/chenzhiyong1994/dsh-cost-guard/issues"
+  }
+}

@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="720" viewBox="0 0 1600 720" role="img" aria-labelledby="title desc">
+  <title id="title">DSH Cost Guard</title>
+  <desc id="desc">Live local cost visibility for DeepSeek Harness, illustrated with a token usage dashboard.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#080b13"/>
+      <stop offset="0.55" stop-color="#11152a"/>
+      <stop offset="1" stop-color="#160d24"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#7c5cff" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#7c5cff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="line" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8b5cf6"/>
+      <stop offset="1" stop-color="#22d3a6"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#fff" stroke-opacity=".035"/>
+    </pattern>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="24" stdDeviation="28" flood-color="#000" flood-opacity=".45"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="720" rx="38" fill="url(#bg)"/>
+  <rect width="1600" height="720" rx="38" fill="url(#grid)"/>
+  <circle cx="1260" cy="155" r="430" fill="url(#glow)"/>
+  <circle cx="70" cy="710" r="330" fill="url(#glow)" opacity=".28"/>
+
+  <g transform="translate(96 84)">
+    <rect width="190" height="42" rx="21" fill="#7c5cff" fill-opacity=".14" stroke="#9b87ff" stroke-opacity=".52"/>
+    <circle cx="24" cy="21" r="7" fill="#22d3a6"/>
+    <text x="42" y="27" fill="#c9c0ff" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="16" font-weight="700" letter-spacing="2">DSH PLUGIN</text>
+
+    <text x="0" y="138" fill="#f7f8ff" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="74" font-weight="760" letter-spacing="-2">Cost Guard</text>
+    <rect x="1" y="166" width="416" height="6" rx="3" fill="url(#line)"/>
+    <text x="0" y="230" fill="#d5d8e8" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="30" font-weight="540">Know what every task costs.</text>
+    <text x="0" y="276" fill="#8f96ad" font-family="Inter,Microsoft YaHei,Segoe UI,sans-serif" font-size="21">看见每一次模型调用的开销</text>
+
+    <g transform="translate(0 342)" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="16" font-weight="650">
+      <g><rect width="162" height="44" rx="22" fill="#fff" fill-opacity=".065" stroke="#fff" stroke-opacity=".12"/><text x="24" y="28" fill="#e5e7f2">Actual tokens</text></g>
+      <g transform="translate(178)"><rect width="142" height="44" rx="22" fill="#fff" fill-opacity=".065" stroke="#fff" stroke-opacity=".12"/><text x="24" y="28" fill="#e5e7f2">Local-only</text></g>
+      <g transform="translate(336)"><rect width="214" height="44" rx="22" fill="#fff" fill-opacity=".065" stroke="#fff" stroke-opacity=".12"/><text x="24" y="28" fill="#e5e7f2">Editable pricing</text></g>
+    </g>
+  </g>
+
+  <g transform="translate(770 116)" filter="url(#shadow)" font-family="Inter,Segoe UI,Arial,sans-serif">
+    <rect width="724" height="476" rx="28" fill="#171a25" stroke="#fff" stroke-opacity=".12"/>
+    <rect x="1" y="1" width="722" height="86" rx="27" fill="#fff" fill-opacity=".025"/>
+    <circle cx="38" cy="42" r="8" fill="#22d3a6"/>
+    <text x="60" y="49" fill="#f4f5fb" font-size="20" font-weight="720">Live task</text>
+    <rect x="554" y="25" width="136" height="34" rx="17" fill="#7c5cff" fill-opacity=".17" stroke="#9580ff" stroke-opacity=".55"/>
+    <text x="580" y="47" fill="#cfc6ff" font-size="14" font-weight="700">v4-flash</text>
+
+    <text x="34" y="143" fill="#8f96ad" font-size="14" font-weight="650" letter-spacing="1.5">CURRENT ESTIMATE</text>
+    <text x="34" y="209" fill="#fbfbff" font-size="56" font-weight="760">¥0.0078</text>
+    <text x="263" y="207" fill="#8f96ad" font-size="18">≈ $0.0011</text>
+
+    <g transform="translate(34 250)">
+      <rect width="202" height="92" rx="16" fill="#fff" fill-opacity=".045" stroke="#fff" stroke-opacity=".07"/>
+      <text x="18" y="30" fill="#8f96ad" font-size="13">INPUT</text>
+      <text x="18" y="66" fill="#f4f5fb" font-size="25" font-weight="720">867</text>
+      <rect x="220" width="202" height="92" rx="16" fill="#fff" fill-opacity=".045" stroke="#fff" stroke-opacity=".07"/>
+      <text x="238" y="30" fill="#8f96ad" font-size="13">OUTPUT</text>
+      <text x="238" y="66" fill="#f4f5fb" font-size="25" font-weight="720">913</text>
+      <rect x="440" width="216" height="92" rx="16" fill="#fff" fill-opacity=".045" stroke="#fff" stroke-opacity=".07"/>
+      <text x="458" y="30" fill="#8f96ad" font-size="13">CACHE HIT</text>
+      <text x="458" y="66" fill="#22d3a6" font-size="25" font-weight="720">47.1K</text>
+    </g>
+
+    <g transform="translate(34 378)">
+      <rect width="656" height="64" rx="18" fill="#0f111a" stroke="#fff" stroke-opacity=".09"/>
+      <circle cx="30" cy="32" r="8" fill="#22d3a6"/>
+      <text x="50" y="38" fill="#f2f3fa" font-size="16" font-weight="700">Idle</text>
+      <text x="118" y="38" fill="#8f96ad" font-size="15">3 calls</text>
+      <text x="216" y="38" fill="#8f96ad" font-size="15">session total</text>
+      <text x="320" y="38" fill="#f2f3fa" font-size="16" font-weight="720">¥0.04</text>
+      <rect x="570" y="18" width="58" height="28" rx="14" fill="#22d3a6" fill-opacity=".14" stroke="#22d3a6" stroke-opacity=".4"/>
+      <text x="589" y="37" fill="#4ce4bc" font-size="13" font-weight="760">ON</text>
+    </g>
+  </g>
+
+  <text x="96" y="656" fill="#6f768e" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="16">TRUE TOKEN USAGE  ·  CONFIGURABLE RATES  ·  ZERO EXECUTION INTERFERENCE</text>
+</svg>

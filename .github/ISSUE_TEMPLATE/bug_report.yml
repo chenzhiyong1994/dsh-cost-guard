@@ -1,0 +1,38 @@
+name: Bug report
+description: Report a reproducible Cost Guard problem
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: input
+    id: dsh-version
+    attributes:
+      label: DSH version
+      placeholder: 0.1.0-rc.6
+    validations:
+      required: true
+  - type: input
+    id: cost-guard-version
+    attributes:
+      label: Cost Guard version
+      placeholder: v4.2.0
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: What happened?
+      description: Describe the expected and actual behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Remove API keys, session content, and other private data.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant logs or screenshots
+      description: Optional. Redact credentials and personal information.
