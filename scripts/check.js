@@ -42,7 +42,6 @@ try {
   assert(readme.includes(`v${pkg.version}`), 'English README must include package version')
   assert(readmeZh.includes(`v${pkg.version}`), 'Chinese README must include package version')
   assert(readme.includes('README.zh-CN.md') && readmeZh.includes('README.md'), 'language switch links are missing')
-  assert(!clientCode.includes('DeepSeek V4 官方峰谷'), 'client must not claim an official peak/off-peak schedule')
 
   const handlers = {}
   const harnessMock = {
@@ -62,9 +61,9 @@ try {
     effect(fn) { return fn() }
   })
   const config = handlers['config.get']().config
-  assert.deepStrictEqual(config.pricing['deepseek-v4-flash'], { input: 1, output: 2, cacheRead: 0.02 })
-  assert.deepStrictEqual(config.pricing['deepseek-v4-pro'], { input: 3, output: 6, cacheRead: 0.025 })
-  assert.strictEqual(config.pricing.peak.enabled, false, 'scheduled multiplier must default to off')
+  assert.deepStrictEqual(config.pricing['deepseek-v4-flash'], { input: 1.5, output: 4.5, cacheRead: 0.05 })
+  assert.deepStrictEqual(config.pricing['deepseek-v4-pro'], { input: 4.5, output: 13.5, cacheRead: 0.15 })
+  assert.strictEqual(config.pricing.peak.enabled, true, 'official peak/off-peak schedule must default to on')
   assert(hostCode.includes('peakEnabled') && clientCode.includes('peakEnabled'), 'HUD must know whether the schedule is enabled')
   console.log(`[check] ok   release facts v${pkg.version}`)
 } catch (e) {

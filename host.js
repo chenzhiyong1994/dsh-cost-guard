@@ -6,10 +6,10 @@ return {
     // ---------------- defaults ----------------
     const DEFAULTS = {
       pricing: {
-        'deepseek-v4-flash': { input: 1, output: 2, cacheRead: 0.02 },
-        'deepseek-v4-pro': { input: 3, output: 6, cacheRead: 0.025 },
-        default: { input: 1, output: 2, cacheRead: 0.02 },
-        peak: { enabled: false, multiplier: 2, windows: [{ start: 9, end: 12 }, { start: 14, end: 18 }] }
+        'deepseek-v4-flash': { input: 1.5, output: 4.5, cacheRead: 0.05 },
+        'deepseek-v4-pro': { input: 4.5, output: 13.5, cacheRead: 0.15 },
+        default: { input: 1.5, output: 4.5, cacheRead: 0.05 },
+        peak: { enabled: true, multiplier: 2, windows: [{ start: 9, end: 12 }, { start: 14, end: 18 }] }
       },
       display: { usdRate: 7.2 }
     }
@@ -367,7 +367,7 @@ return {
               const v = num(p[f])
               if (v !== null && v >= 0) row[f] = v
             }
-            if (row.input !== undefined || row.output !== undefined) merged.pricing[key] = Object.assign({ input: 1, output: 2, cacheRead: 0.02 }, row)
+            if (row.input !== undefined || row.output !== undefined) merged.pricing[key] = Object.assign({ input: 1.5, output: 4.5, cacheRead: 0.05 }, row)
           }
         }
       }

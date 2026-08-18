@@ -8,7 +8,7 @@
 
 <div align="center">
 
-[![Version](https://img.shields.io/badge/version-v4.2.0-7c3aed?style=flat-square)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-v4.3.1-7c3aed?style=flat-square)](CHANGELOG.md)
 [![Check](https://img.shields.io/github/actions/workflow/status/chenzhiyong1994/dsh-cost-guard/check.yml?branch=main&style=flat-square&label=check)](https://github.com/chenzhiyong1994/dsh-cost-guard/actions/workflows/check.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-22c55e?style=flat-square)](LICENSE)
 [![DSH plugin](https://img.shields.io/badge/DSH-plugin-7c3aed?style=flat-square)](https://github.com/topics/dsh-plugin)
@@ -34,11 +34,11 @@
 
 ### 价格和累计始终由你掌控
 
-在 **设置 → 开销监控** 中编辑模型单价、添加自定义模型、按需启用时段倍率、查看按模型累计，并导入或导出配置。
+在 **设置 → 开销监控** 中编辑模型单价、添加自定义模型、启用官方峰谷计价、查看按模型累计，并导入或导出配置。
 
 ![开销监控设置页，包含模型定价与会话累计](docs/screenshots/settings-pricing.png)
 
-> 截图来自启用了可选时段倍率的早期配置实例。`v4.2.0` 发布版默认关闭该选项，并使用下文所列的当前基础价。
+> 截图来自早期配置实例。`v4.3.0` 发布版默认启用官方峰谷计价（高峰 ×2），并使用下文所列的当前官方价。
 
 ## 为什么值得安装
 
@@ -46,7 +46,8 @@
 - **实时且一眼可见**：把任务费用与 token 构成放在输入框旁边。
 - **支持子代理汇总**：子代理用量回卷到根会话的当前轮次。
 - **重启可恢复**：启动时回放持久会话事件，重建历史累计。
-- **价格可审计**：所有模型单价和可选时段倍率都能在设置页查看和修改。
+- **价格可审计**：所有模型单价和峰谷时段都能在设置页查看和修改。
+- **中英双语**：底部横条与设置页跟随 DSH 通用设置的语言（中文 / English）自动切换。
 - **完全本地**：无遥测、无外部服务、无账号访问，不收集 API Key。
 - **零执行干预**：没有预测门禁、确认遮罩或模型路由。
 
@@ -77,17 +78,17 @@ cordis_inspect_self 确认 hasHostHalf 与 hasClientHalf 都为 true，
 
 ## 计价模型
 
-`v4.2.0` 默认值已于 2026-08-18 对照 [DeepSeek API 官方定价页](https://api-docs.deepseek.com/zh-cn/quick_start/pricing/)；单位为人民币元 / 1M tokens：
+`v4.3.0` 默认值与 2026-08-17 生效的 DeepSeek V4 官方峰谷定价一致（已对照 [DeepSeek API 官方定价页](https://api-docs.deepseek.com/zh-cn/quick_start/pricing/)与[官方公告](https://news.qq.com/rain/a/20260817V03S1500)核实）；单位为人民币元 / 1M tokens，下为空闲（谷）价：
 
 | 模型 | 输入·缓存未命中 | 输出 | 输入·缓存命中 |
 | --- | ---: | ---: | ---: |
-| `deepseek-v4-flash` | ¥1 | ¥2 | ¥0.02 |
-| `deepseek-v4-pro` | ¥3 | ¥6 | ¥0.025 |
-| `default` 兜底 | ¥1 | ¥2 | ¥0.02 |
+| `deepseek-v4-flash` | ¥1.5 | ¥4.5 | ¥0.05 |
+| `deepseek-v4-pro` | ¥4.5 | ¥13.5 | ¥0.15 |
+| `default` 兜底 | ¥1.5 | ¥4.5 | ¥0.05 |
+
+高峰时段为北京时间 9:00–12:00、14:00–18:00，单价为谷价的 2 倍。峰谷计价**默认开启**，可在设置页关闭或修改窗口与倍率。
 
 官方表格没有单列缓存写入价，因此缓存写入 token 按输入缓存未命中价计算。为兼容旧名称，`deepseek-chat` 映射到 Flash，`deepseek-reasoner` 映射到 Pro。
-
-可选时段倍率**默认关闭**。只有你的供应商或账号确实采用分时价格时才应启用，并按实际账单填写时间窗与倍率。
 
 ## 工作原理
 
@@ -112,11 +113,11 @@ flowchart LR
 | 区块 | 可配置内容 |
 | --- | --- |
 | 模型定价 | 输入未命中、输出、输入命中单价；自定义模型；恢复默认 |
-| 时段倍率 | 可选的北京时间窗口和倍率；默认关闭 |
+| 峰谷计价 | 官方窗口 9:00–12:00、14:00–18:00（北京时间）×2；默认开启 |
 | 会话累计 | 已结算任务、估算金额、汇率、按模型统计 |
 | 配置备份 | JSON 导出与导入 |
 
-横条中的美元金额使用可编辑的人民币 / 美元汇率近似换算。
+横条中的美元金额使用可编辑的人民币 / 美元汇率近似换算。界面文字跟随 DSH 通用设置的语言（中文 / English）自动切换。
 
 ## 更新
 

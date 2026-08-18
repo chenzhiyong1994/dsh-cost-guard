@@ -8,7 +8,7 @@
 
 <div align="center">
 
-[![Version](https://img.shields.io/badge/version-v4.2.0-7c3aed?style=flat-square)](CHANGELOG.md)
+[![Version](https://img.shields.io/badge/version-v4.3.1-7c3aed?style=flat-square)](CHANGELOG.md)
 [![Check](https://img.shields.io/github/actions/workflow/status/chenzhiyong1994/dsh-cost-guard/check.yml?branch=main&style=flat-square&label=check)](https://github.com/chenzhiyong1994/dsh-cost-guard/actions/workflows/check.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-22c55e?style=flat-square)](LICENSE)
 [![DSH plugin](https://img.shields.io/badge/DSH-plugin-7c3aed?style=flat-square)](https://github.com/topics/dsh-plugin)
@@ -34,11 +34,11 @@ The composer dock shows the current or most recent task, model, input/output/cac
 
 ### Pricing and totals stay under your control
 
-Edit model rates, add custom models, optionally apply a scheduled multiplier, inspect per-model totals, and export or import the configuration from **Settings → Cost Guard**.
+Edit model rates, add custom models, apply the official peak/off-peak schedule, inspect per-model totals, and export or import the configuration from **Settings → Cost Guard**.
 
 ![Cost Guard settings with model pricing and session totals](docs/screenshots/settings-pricing.png)
 
-> The screenshots were captured from an earlier configured instance with the optional scheduled multiplier enabled. Release `v4.2.0` ships with that option disabled and uses the current base rates described below.
+> The screenshots were captured from an earlier configured instance. Release `v4.3.0` ships with the official DeepSeek V4 peak/off-peak schedule enabled by default and uses the current rates described below.
 
 ## Why Cost Guard
 
@@ -46,7 +46,8 @@ Edit model rates, add custom models, optionally apply a scheduled multiplier, in
 - **Live and glanceable** — keeps task cost and token mix beside the composer where decisions happen.
 - **Subagent-aware** — rolls subagent usage into the active root-session turn.
 - **Restart-resilient** — replays persisted session events to rebuild historical totals when the plugin starts.
-- **Pricing you can audit** — all model rates and the optional time-window multiplier are visible and editable.
+- **Pricing you can audit** — all model rates and the peak/off-peak windows are visible and editable.
+- **Bilingual UI** — the HUD and settings page follow the DSH language setting (中文 / English) automatically.
 - **Local-only** — no telemetry, external service, account access, or API key collection.
 - **Zero execution interference** — no prediction gate, approval overlay, or model routing.
 
@@ -77,17 +78,17 @@ For the full online/offline prompt and update procedure, see [Installation](docs
 
 ## Pricing model
 
-The `v4.2.0` defaults were checked against the [DeepSeek API pricing page](https://api-docs.deepseek.com/zh-cn/quick_start/pricing/) on 2026-08-18. Rates are CNY per 1M tokens:
+The `v4.3.0` defaults match the official DeepSeek V4 peak/off-peak pricing that took effect on 2026-08-17 (verified against the [DeepSeek API pricing page](https://api-docs.deepseek.com/zh-cn/quick_start/pricing/) and the [official announcement](https://news.qq.com/rain/a/20260817V03S1500)). Rates are CNY per 1M tokens, off-peak (valley) prices:
 
 | Model | Input · cache miss | Output | Input · cache hit |
 | --- | ---: | ---: | ---: |
-| `deepseek-v4-flash` | ¥1 | ¥2 | ¥0.02 |
-| `deepseek-v4-pro` | ¥3 | ¥6 | ¥0.025 |
-| `default` fallback | ¥1 | ¥2 | ¥0.02 |
+| `deepseek-v4-flash` | ¥1.5 | ¥4.5 | ¥0.05 |
+| `deepseek-v4-pro` | ¥4.5 | ¥13.5 | ¥0.15 |
+| `default` fallback | ¥1.5 | ¥4.5 | ¥0.05 |
+
+Peak hours are 9:00–12:00 and 14:00–18:00 Beijing time, billed at ×2 the off-peak price. Peak/off-peak pricing is **on by default**; toggle it and edit the windows from the settings page.
 
 Cache-write tokens use the cache-miss input rate because the official table has no separate cache-write item. Legacy names are mapped for convenience: `deepseek-chat` → Flash and `deepseek-reasoner` → Pro.
-
-The optional scheduled multiplier is **off by default**. Enable it only when your provider or account actually uses time-based rates, then enter the windows and multiplier shown on your bill.
 
 ## How it works
 
@@ -112,11 +113,11 @@ Open **Settings → Cost Guard** to manage:
 | Section | Controls |
 | --- | --- |
 | Model pricing | Cache-miss input, output, and cache-hit input rates; custom models; restore defaults |
-| Scheduled multiplier | Optional Beijing-time windows and multiplier; disabled by default |
+| Peak/off-peak pricing | Official windows (9:00–12:00, 14:00–18:00 Beijing) at ×2; enabled by default |
 | Session totals | Settled tasks, estimated spend, exchange rate, and per-model totals |
 | Backup | Export or import the configuration as JSON |
 
-The USD amount in the HUD is an approximate conversion using the editable CNY/USD rate.
+The USD amount in the HUD is an approximate conversion using the editable CNY/USD rate. All UI text follows the DSH language setting (中文 / English).
 
 ## Updating
 
