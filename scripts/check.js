@@ -31,7 +31,7 @@ try {
 
   for (const required of [
     'LICENSE', 'README.md', 'README.zh-CN.md', 'CHANGELOG.md', 'CONTRIBUTING.md',
-    'SECURITY.md', 'host.js', 'client.js', 'docs/assets/hero.svg',
+    'SECURITY.md', 'host.js', 'client.js', 'docs/assets/hero-cost-guard.png',
     'docs/screenshots/hud-idle.png', 'docs/screenshots/settings-pricing.png'
   ]) {
     assert(fs.existsSync(path.join(root, required)), `missing ${required}`)

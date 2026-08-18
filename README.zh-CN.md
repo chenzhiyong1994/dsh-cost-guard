@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="docs/assets/hero.svg" alt="DSH Cost Guard——DeepSeek Harness 实时本地开销视图" width="100%">
+  <img src="docs/assets/hero-cost-guard.png" alt="DSH Cost Guard——用蓝发鲸尾女仆递上账单的餐厅场景表现任务开销" width="100%">
 </div>
 
 <div align="center">

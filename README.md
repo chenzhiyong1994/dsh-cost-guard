@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="docs/assets/hero.svg" alt="DSH Cost Guard — live, local cost visibility for DeepSeek Harness" width="100%">
+  <img src="docs/assets/hero-cost-guard.png" alt="DSH Cost Guard — a diner discovers the cost while a blue-haired whale-maid presents the bill" width="100%">
 </div>
 
 <div align="center">
