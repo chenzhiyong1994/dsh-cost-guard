@@ -17,7 +17,7 @@
     "plugin"
   ],
   "scripts": {
-    "check": "node scripts/check.js"
+    "check": "node scripts/check.js && node --check docs/assets/site.js"
   },
   "engines": {
     "node": ">=18"
@@ -38,7 +38,7 @@
     "type": "git",
     "url": "https://github.com/chenzhiyong1994/dsh-cost-guard.git"
   },
-  "homepage": "https://github.com/chenzhiyong1994/dsh-cost-guard#readme",
+  "homepage": "https://chenzhiyong1994.github.io/dsh-cost-guard/",
   "bugs": {
     "url": "https://github.com/chenzhiyong1994/dsh-cost-guard/issues"
   }

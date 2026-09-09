@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#f7f9fc" />
+    <title>DSH Cost Guard — 让每一次思考，都有数</title>
+    <meta
+      name="description"
+      content="为 DeepSeek Harness 打造的本地开销监控插件。实时查看 token 用量、任务费用估算和模型累计，让每一次思考都有数。"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="DSH Cost Guard — 让每一次思考，都有数" />
+    <meta
+      property="og:description"
+      content="真实 token 用量，本地费用估算。一个安静的横条，看清 DSH 每次任务的开销。"
+    />
+    <meta
+      property="og:url"
+      content="https://chenzhiyong1994.github.io/dsh-cost-guard/"
+    />
+    <meta
+      property="og:image"
+      content="https://chenzhiyong1994.github.io/dsh-cost-guard/assets/hero-cost-guard.png"
+    />
+    <link
+      rel="canonical"
+      href="https://chenzhiyong1994.github.io/dsh-cost-guard/"
+    />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/site.css" />
+    <script src="assets/site.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main" data-en="Skip to content">跳转到正文</a>
+    <header class="site-header">
+      <div class="container nav-row">
+        <a class="brand" href="#" aria-label="DSH Cost Guard">
+          <span class="brand-icon" aria-hidden="true"
+            ><svg viewBox="0 0 24 24">
+              <path d="M6 3h12v18l-3-2-3 2-3-2-3 2V3Z" />
+              <path d="M9 8h6M9 12h3" /></svg
+          ></span>
+          <span>Cost Guard<span class="brand-sub"> / DSH</span></span>
+        </a>
+        <nav
+          class="main-nav"
+          aria-label="主导航"
+          data-en-aria-label="Main navigation"
+        >
+          <a href="#preview" data-en="Preview">实际效果</a>
+          <a href="#features" data-en="Features">功能</a>
+          <a href="#install" data-en="Install">安装</a>
+        </nav>
+        <div class="nav-actions">
+          <a
+            class="language-switch"
+            id="language-switch"
+            href="?lang=en"
+            lang="en"
+            aria-label="Switch to English"
+            >EN <span aria-hidden="true">↗</span></a
+          >
+          <a
+            class="github-link"
+            href="https://github.com/chenzhiyong1994/dsh-cost-guard"
+            ><svg viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.86c-2.78.61-3.37-1.18-3.37-1.18-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.82.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.26-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03a9.6 9.6 0 0 1 5 0c1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.39.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.58 4.95.36.31.68.92.68 1.85v2.76c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"
+              /></svg
+            ><span>GitHub</span></a
+          >
+        </div>
+      </div>
+    </header>
+    <main id="main">
+      <section class="hero container" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <a
+            class="release-label"
+            href="https://github.com/chenzhiyong1994/dsh-cost-guard/blob/main/CHANGELOG.md"
+            ><span class="status-dot"></span> v4.3.1
+            <span class="release-divider">/</span>
+            <span data-en="Small plugin. Clearer costs.">小插件，明白账。</span
+            ><span aria-hidden="true">↗</span></a
+          >
+          <p class="eyebrow">MADE FOR DEEPSEEK HARNESS</p>
+          <h1 id="hero-title">
+            <span data-en="Every token.">每一次思考，</span><br /><span
+              class="blue-text"
+              data-en="Accounted for."
+              >都有数。</span
+            >
+          </h1>
+          <p
+            class="hero-description"
+            data-en="Keep an eye on your agent’s costs, right where you work. Actual token usage, live estimates, and a little more peace of mind."
+          >
+            让 Agent 放手工作，让开销一目了然。真实 token
+            用量、实时费用估算，就在输入框旁，安静地为你记好每一笔。
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#install"
+              ><span data-en="Get Cost Guard">开始使用</span
+              ><span aria-hidden="true">↗</span></a
+            >
+            <a class="text-link" href="#preview"
+              ><span data-en="Take a closer look">看看实际效果</span
+              ><span aria-hidden="true">↓</span></a
+            >
+          </div>
+          <p class="hero-footnote">
+            <span aria-hidden="true">✓</span>
+            <span data-en="Open source · Runs locally · No build step"
+              >开源免费 · 本地运行 · 无需构建</span
+            >
+          </p>
+        </div>
+        <div class="hero-visual">
+          <div class="visual-topline">
+            <span class="mono">COST GUARD / SESSION 001</span
+            ><span class="visual-cross" aria-hidden="true">+</span>
+          </div>
+          <div class="receipt">
+            <div class="receipt-header">
+              <span class="receipt-icon" aria-hidden="true">↗</span
+              ><span class="mono">TASK RECEIPT</span
+              ><span class="receipt-status" data-en="Settled">已结算</span>
+            </div>
+            <p class="receipt-label" data-en="This task, in focus">
+              这一次任务，心中有数
+            </p>
+            <p class="receipt-total"><span>¥</span>0.2634</p>
+            <div class="receipt-meta">
+              <span class="model-tag">deepseek-v4-flash</span
+              ><span data-en="3 model calls">3 次模型调用</span>
+            </div>
+            <div class="receipt-rule"></div>
+            <div class="receipt-columns mono">
+              <span data-en="TOKEN USAGE">TOKEN 用量</span
+              ><span data-en="EST. / CNY">估算 / CNY</span>
+            </div>
+            <dl class="token-list">
+              <div>
+                <dt>
+                  <i class="token-dot input-dot"></i
+                  ><span data-en="Input · cache miss">输入 · 未命中</span
+                  ><small>120,000</small>
+                </dt>
+                <dd>0.1800</dd>
+              </div>
+              <div>
+                <dt>
+                  <i class="token-dot output-dot"></i
+                  ><span data-en="Output">输出</span><small>18,000</small>
+                </dt>
+                <dd>0.0810</dd>
+              </div>
+              <div>
+                <dt>
+                  <i class="token-dot cache-dot"></i
+                  ><span data-en="Input · cache hit">输入 · 缓存命中</span
+                  ><small>47,100</small>
+                </dt>
+                <dd>0.0024</dd>
+              </div>
+            </dl>
+            <div class="token-bar" aria-hidden="true">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="receipt-bottom">
+              <span data-en="Recorded locally">用量在本地记录</span
+              ><span class="mono">185,100 TOKENS</span>
+            </div>
+          </div>
+          <div class="visual-caption">
+            <span class="status-dot"></span
+            ><span data-en="Illustrative data · An estimate, not an invoice"
+              >示例数据 · 费用估算，非供应商账单</span
+            >
+          </div>
+          <span class="visual-side-label mono" aria-hidden="true"
+            >LESS GUESSWORK. MORE CLARITY.</span
+          >
+        </div>
+      </section>
+      <div class="trust-strip container">
+        <p data-en="A quiet companion for your agent.">
+          为专注而生的轻量搭档。
+        </p>
+        <div>
+          <strong>4</strong
+          ><span data-en="Token dimensions">种 token 维度</span>
+        </div>
+        <div>
+          <strong>2</strong><span data-en="UI languages">种界面语言</span>
+        </div>
+        <div>
+          <strong>0</strong
+          ><span data-en="Outbound plugin requests">个插件外部请求</span>
+        </div>
+      </div>
+      <section
+        class="section container"
+        id="preview"
+        aria-labelledby="preview-title"
+      >
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">
+              <span class="section-number">01 /</span> IN YOUR WORKFLOW
+            </p>
+            <h2 id="preview-title" data-en="Your costs. Right in sight.">
+              开销，放在看得见的地方。
+            </h2>
+          </div>
+          <p
+            data-en="One quiet HUD. All the useful numbers. Stay in your flow without opening another panel."
+          >
+            一个安静的横条，装下所有关键数字。<br />不用切换面板，也不打断思路。
+          </p>
+        </div>
+        <div
+          class="preview-switch"
+          role="group"
+          aria-label="选择产品截图"
+          data-en-aria-label="Choose a product screenshot"
+        >
+          <button
+            class="preview-button"
+            type="button"
+            data-preview="hud"
+            aria-pressed="true"
+            aria-controls="product-preview"
+          >
+            <span aria-hidden="true">▤</span>
+            <span data-en="Composer HUD">实时横条</span>
+          </button>
+          <button
+            class="preview-button"
+            type="button"
+            data-preview="settings"
+            aria-pressed="false"
+            aria-controls="product-preview"
+          >
+            <span aria-hidden="true">⚙</span>
+            <span data-en="Pricing & totals">价格与累计</span>
+          </button>
+        </div>
+        <figure class="product-preview" id="product-preview">
+          <div class="window-bar">
+            <div class="window-dots" aria-hidden="true">
+              <i></i><i></i><i></i>
+            </div>
+            <span class="mono"
+              >DeepSeek Harness
+              <span class="window-path">/ Cost Guard</span></span
+            ><span class="window-local"
+              ><span class="status-dot"></span
+              ><span data-en="LOCAL">本地运行</span></span
+            >
+          </div>
+          <a
+            id="screenshot-link"
+            href="screenshots/hud-idle.png"
+            target="_blank"
+            rel="noopener"
+            aria-label="在新标签页查看完整截图"
+            data-en-aria-label="Open full screenshot in a new tab"
+            ><img
+              id="product-screenshot"
+              src="screenshots/hud-idle.png"
+              width="1910"
+              height="914"
+              alt="DSH 输入框下方的开销横条，显示 token 用量、模型调用和会话累计"
+              loading="lazy"
+          /></a>
+          <figcaption>
+            <span id="screenshot-caption"
+              >当前或最近一次任务、token
+              构成、模型调用与会话累计，一眼可见。</span
+            ><span class="caption-hint" data-en="Click image to enlarge ↗"
+              >点击图片查看大图 ↗</span
+            >
+          </figcaption>
+        </figure>
+        <p
+          class="small-note"
+          data-en="Screenshots show an earlier configured instance; displayed rates and totals are examples. Your estimates use your local settings."
+        >
+          截图来自早期配置实例，展示的价格与累计仅为示例；实际估算以你的本地设置为准。
+        </p>
+        <noscript
+          ><p>
+            查看另一张截图 / View the other screenshot:
+            <a href="screenshots/settings-pricing.png"
+              >价格与累计 / Pricing & totals</a
+            >
+          </p></noscript
+        >
+      </section>
+      <section
+        class="features-section"
+        id="features"
+        aria-labelledby="features-title"
+      >
+        <div class="container">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">
+                <span class="section-number">02 /</span> SMALL, BY DESIGN
+              </p>
+              <h2
+                id="features-title"
+                data-en="Everything you need to keep track."
+              >
+                记得清楚，用得轻松。
+              </h2>
+            </div>
+            <p
+              data-en="From the first token to the session total, the details stay within reach."
+            >
+              从第一个 token 到整段会话，<br />每一笔都有迹可循。
+            </p>
+          </div>
+          <div class="feature-grid">
+            <article class="feature">
+              <span class="feature-icon" aria-hidden="true">↗</span>
+              <h3 data-en="Usage, not guesswork">真实用量，实时呈现</h3>
+              <p
+                data-en="Reads input, output, cache-read, and cache-write tokens from DSH usage events. See the mix beside your composer."
+              >
+                读取 DSH usage 事件中的输入、输出、缓存命中与缓存写入
+                token，在输入框旁看清用量构成。
+              </p>
+              <span class="feature-detail mono">USAGE → ESTIMATE</span>
+            </article>
+            <article class="feature">
+              <span class="feature-icon" aria-hidden="true">≋</span>
+              <h3 data-en="Your rates. Your rules.">价格规则，由你掌控</h3>
+              <p
+                data-en="Edit model rates, add custom models, and configure peak/off-peak windows. Back up your configuration with JSON import and export."
+              >
+                编辑模型单价、添加自定义模型、配置峰谷时段，随时通过 JSON
+                导入和导出备份设置。
+              </p>
+              <span class="feature-detail mono">CONFIGURABLE PRICING</span>
+            </article>
+            <article class="feature">
+              <span class="feature-icon" aria-hidden="true">⤴</span>
+              <h3 data-en="Every agent, accounted for">子代理开销，一起记好</h3>
+              <p
+                data-en="Rolls subagent usage into the active root-session turn. Replays persisted events on startup to rebuild historical totals."
+              >
+                子代理用量汇总到根会话当前轮次；启动时回放持久会话事件，重建历史累计。
+              </p>
+              <span class="feature-detail mono"
+                >SUBAGENTS + SESSION REPLAY</span
+              >
+            </article>
+          </div>
+          <div class="privacy-line">
+            <span class="privacy-symbol" aria-hidden="true">◎</span>
+            <div>
+              <strong data-en="Your data stays in DSH."
+                >数据，留在你的 DSH 里。</strong
+              ><span
+                data-en="No telemetry, account access, or API key collection. The plugin observes execution without changing it."
+                >无遥测、无账号访问、不收集 API Key。插件旁路观察，不干预 Agent
+                执行。</span
+              >
+            </div>
+            <a
+              href="https://github.com/chenzhiyong1994/dsh-cost-guard/blob/main/SECURITY.md"
+              class="text-link"
+              ><span data-en="Security notes">安全说明</span> ↗</a
+            >
+          </div>
+        </div>
+      </section>
+      <section
+        class="section container install-section"
+        id="install"
+        aria-labelledby="install-title"
+      >
+        <div class="install-copy">
+          <p class="eyebrow">
+            <span class="section-number">03 /</span> LET’S GET STARTED
+          </p>
+          <h2 id="install-title">
+            <span data-en="One prompt.">一句话，</span><br /><span
+              data-en="And you’re set."
+              >让 DSH 帮你装好。</span
+            >
+          </h2>
+          <p
+            data-en="Copy the prompt, paste it into your DSH conversation, and let your agent handle the installation."
+          >
+            复制提示词，粘贴到 DSH 对话中，剩下的交给你的 Agent。
+          </p>
+          <ol class="install-steps">
+            <li>
+              <span>01</span
+              ><span data-en="Copy the installation prompt"
+                >复制安装提示词</span
+              >
+            </li>
+            <li>
+              <span>02</span
+              ><span data-en="Send it to your DSH agent"
+                >发送给 DSH 智能体</span
+              >
+            </li>
+            <li>
+              <span>03</span
+              ><span data-en="Find Settings → Cost Guard"
+                >打开「设置 → 开销监控」</span
+              >
+            </li>
+          </ol>
+          <a
+            class="text-link"
+            href="https://github.com/chenzhiyong1994/dsh-cost-guard/blob/main/docs/install.md"
+            ><span data-en="Full installation & update guide"
+              >完整安装与更新指南</span
+            >
+            ↗</a
+          >
+        </div>
+        <div class="install-panel">
+          <div class="prompt-heading">
+            <span class="mono">INSTALL PROMPT</span
+            ><span data-en="Paste into DSH">粘贴到 DSH 对话</span>
+          </div>
+          <pre id="install-prompt" tabindex="0">
+请从 https://github.com/chenzhiyong1994/dsh-cost-guard
+安装动态 Cordis 插件 dsh-cost-guard。
+
+读取仓库中的 docs/install.md 并按“在线安装”执行。
+运行前必须使用 cordis_inspect_self 确认
+hasHostHalf 与 hasClientHalf 都为 true，
+然后激活插件并告诉我安装后的插件 ID。</pre>
+          <div class="copy-row">
+            <span
+              id="copy-status"
+              role="status"
+              aria-live="polite"
+              data-en="No build step required"
+              >无需构建</span
+            ><button
+              type="button"
+              class="button button-primary copy-button"
+              id="copy-prompt"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="8" y="8" width="12" height="13" rx="2" />
+                <path
+                  d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"
+                /></svg
+              ><span data-en="Copy prompt">复制提示词</span>
+            </button>
+          </div>
+          <p
+            class="requirements"
+            data-en="Requires DeepSeek Harness with dynamic Cordis tools and the DSH Web UI. Tested with DSH 0.1.0-rc.6."
+          >
+            需要支持动态 Cordis 工具的 DeepSeek Harness 和 DSH Web UI。已在 DSH
+            0.1.0-rc.6 验证。
+          </p>
+        </div>
+      </section>
+      <section
+        class="container story-section"
+        aria-label="项目插画"
+        data-en-aria-label="Project illustration"
+      >
+        <div class="story-image">
+          <img
+            src="assets/hero-cost-guard.png"
+            width="1870"
+            height="841"
+            loading="lazy"
+            alt="餐厅里的食客望着蓝发鲸尾女仆递来的账单，字幕写着：这得花不少钱"
+            data-en-alt="A diner looks at the bill presented by a blue-haired whale-maid. The caption reads: It’ll cost a tidy bit."
+          />
+        </div>
+        <div class="story-caption">
+          <span class="mono">THE IDEA BEHIND COST GUARD</span>
+          <p data-en="A little less surprise when the bill arrives.">
+            账单到来时，少一点意外。
+          </p>
+          <a href="#install" class="text-link"
+            ><span data-en="Know as you go">边用，边看清</span> ↗</a
+          >
+        </div>
+      </section>
+      <section
+        class="section container faq-section"
+        aria-labelledby="faq-title"
+      >
+        <div>
+          <p class="eyebrow">
+            <span class="section-number">04 /</span> GOOD TO KNOW
+          </p>
+          <h2 id="faq-title" data-en="A few useful details.">
+            你可能还想知道。
+          </h2>
+        </div>
+        <div class="faq-list">
+          <details>
+            <summary data-en="Are these the amounts on my provider bill?">
+              显示的金额，就是实际账单吗？
+            </summary>
+            <p
+              data-en="Token counts come from DSH usage events. Currency amounts are local estimates based on your configured rates, including any peak/off-peak settings. Always use your provider’s invoice as the source of truth."
+            >
+              Token 数来自 DSH usage
+              事件；金额根据你配置的单价和峰谷规则在本地估算。它不是权威账单，请始终以供应商实际账单为准。
+            </p>
+          </details>
+          <details>
+            <summary data-en="Will it interrupt my agent?">
+              会影响 Agent 执行任务吗？
+            </summary>
+            <p
+              data-en="Cost Guard observes usage and displays estimates. It has no prediction gate, approval overlay, or model routing, and does not block or rewrite agent execution."
+            >
+              Cost Guard
+              只观察用量并展示估算，不含预测门禁、确认遮罩或模型路由，不拦截或改写
+              Agent 执行。
+            </p>
+          </details>
+          <details>
+            <summary data-en="Can I use it with other models?">
+              可以给其他模型配置价格吗？
+            </summary>
+            <p
+              data-en="Yes. Add a custom model and its rates in Settings → Cost Guard. Tracking depends on the usage information DSH records for that model."
+            >
+              可以。在「设置 →
+              开销监控」中添加自定义模型并填写单价。用量统计取决于 DSH
+              为对应模型记录的 usage 信息。
+            </p>
+          </details>
+          <details>
+            <summary data-en="How do I update the plugin?">
+              之后如何更新插件？
+            </summary>
+            <p
+              data-en="Ask your DSH agent to follow the update guide. Both host.js and client.js must be submitted together, inspected, and activated in update mode. Dynamic packages are replaced as a whole."
+            >
+              让 DSH 智能体按照安装指南中的更新步骤执行：同时提交 host.js 和
+              client.js，检查两个半部分后再以 update
+              模式激活。动态包更新采用整体替换。
+            </p>
+          </details>
+        </div>
+      </section>
+    </main>
+    <footer class="site-footer container">
+      <div>
+        <a class="brand" href="#"
+          ><span class="brand-icon" aria-hidden="true"
+            ><svg viewBox="0 0 24 24">
+              <path d="M6 3h12v18l-3-2-3 2-3-2-3 2V3Z" />
+              <path d="M9 8h6M9 12h3" /></svg></span
+          >Cost Guard</a
+        >
+        <p data-en="A little clarity for every token.">
+          每一枚 token，都花得明白。
+        </p>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/chenzhiyong1994/dsh-cost-guard">GitHub ↗</a
+        ><a
+          href="https://github.com/chenzhiyong1994/dsh-cost-guard/blob/main/CHANGELOG.md"
+          data-en="Changelog"
+          >更新记录</a
+        ><a
+          href="https://github.com/chenzhiyong1994/dsh-cost-guard/blob/main/LICENSE"
+          >MIT License</a
+        ><span data-en="Hosted on GitHub Pages">由 GitHub Pages 托管</span>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -19,6 +19,10 @@ Thanks for helping improve `dsh-cost-guard`.
 
 The source files are function-body fragments consumed by `cordis_define`; they are intentionally plain JavaScript without imports, TypeScript, or JSX.
 
+## Project website
+
+For homepage changes, follow the [website preview and publishing guide](docs/website.md). Keep both languages and installation instructions in sync, and verify the layout and interactions on desktop and mobile.
+
 ## Pricing changes
 
 Price data changes quickly. Any default-rate update must link to a primary provider source and include the date it was verified. Currency values remain estimates; do not describe them as authoritative billing totals.

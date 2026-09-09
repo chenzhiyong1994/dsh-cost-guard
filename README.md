@@ -3,7 +3,7 @@
 </div>
 
 <div align="center">
-  <a href="README.md">English</a> · <a href="README.zh-CN.md">简体中文</a>
+  <a href="README.md">English</a> · <a href="README.zh-CN.md">简体中文</a> · <a href="https://chenzhiyong1994.github.io/dsh-cost-guard/?lang=en">Project website ↗</a>
 </div>
 
 <div align="center">
@@ -20,6 +20,8 @@
 Know what every DSH task costs while it runs. `dsh-cost-guard` is a local-only dynamic Cordis plugin for [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) that turns recorded token usage into a compact live cost HUD, per-model totals, and editable pricing.
 
 It observes execution; it never blocks, reroutes, or changes the agent.
+
+**[Visit the project website →](https://chenzhiyong1994.github.io/dsh-cost-guard/?lang=en)** — explore the HUD and pricing screenshots, switch between English and Chinese, and copy the installation prompt. Hosted on **GitHub Pages**, with automatic deployment from `main`. See [website maintenance and publishing](docs/website.md).
 
 > [!IMPORTANT]
 > Token counts come from DSH usage events. Currency amounts are local estimates calculated from your configured rates, not authoritative billing data. Provider prices can change—always treat the provider invoice as the source of truth.
@@ -144,6 +146,8 @@ See [SECURITY.md](SECURITY.md) for reporting guidance.
 | [`host.js`](host.js) | Dynamic Cordis Host half |
 | [`client.js`](client.js) | Dynamic Cordis Web client half |
 | [`docs/install.md`](docs/install.md) | Copy-paste online and offline installation prompts |
+| [`docs/index.html`](docs/index.html) | Bilingual project homepage on GitHub Pages |
+| [`docs/website.md`](docs/website.md) | Website preview, maintenance, and deployment |
 | [`scripts/check.js`](scripts/check.js) | Syntax and release-invariant checks |
 | [`CHANGELOG.md`](CHANGELOG.md) | Release history |
 

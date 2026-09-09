@@ -3,7 +3,7 @@
 </div>
 
 <div align="center">
-  <a href="README.md">English</a> · <a href="README.zh-CN.md">简体中文</a>
+  <a href="README.md">English</a> · <a href="README.zh-CN.md">简体中文</a> · <a href="https://chenzhiyong1994.github.io/dsh-cost-guard/">项目主页 ↗</a>
 </div>
 
 <div align="center">
@@ -20,6 +20,8 @@
 在任务执行过程中看清每一分钱花在哪里。`dsh-cost-guard` 是为 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 编写的本地动态 Cordis 插件：它把 DSH 记录的真实 token 用量转换成简洁的实时开销横条、按模型累计统计和可编辑价格表。
 
 插件只旁路观察，不会拦截、改写或路由 Agent 的执行。
+
+**[访问项目主页 →](https://chenzhiyong1994.github.io/dsh-cost-guard/)** — 查看横条与价格设置截图、切换中英介绍，并一键复制安装提示词。主页由 **GitHub Pages** 托管，随 `main` 分支的相关更新自动部署。维护与发布方法见[主页说明](docs/website.md)。
 
 > [!IMPORTANT]
 > Token 数来自 DSH 的 usage 事件；金额由本地配置单价计算，是费用估算，不是权威账单。供应商可能随时调价，请始终以供应商实际账单为准。
@@ -144,6 +146,8 @@ flowchart LR
 | [`host.js`](host.js) | 动态 Cordis Host 半部分 |
 | [`client.js`](client.js) | 动态 Cordis Web Client 半部分 |
 | [`docs/install.md`](docs/install.md) | 可复制的在线 / 离线安装提示词 |
+| [`docs/index.html`](docs/index.html) | GitHub Pages 中英双语项目主页 |
+| [`docs/website.md`](docs/website.md) | 主页预览、维护与部署说明 |
 | [`scripts/check.js`](scripts/check.js) | 语法与发布不变量检查 |
 | [`CHANGELOG.md`](CHANGELOG.md) | 版本记录 |
 
